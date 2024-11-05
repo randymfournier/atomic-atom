@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectList from '../project/ProjectList.astro';
+import { Card } from '@eliancodes/brutal-ui';
+import { Button } from '@eliancodes/brutal-ui';
+
+interface Props {
+  count?: number;
+}
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const posts = await getCollection('project').then((posts: any) =>
+  posts.filter(getFeatured)
+);
+
+function getFeatured(posts: any) {
+  return posts.data.featured === true;
+}
+
+---
+
+<section class='mt-8'>
+  <Card color="#22d3ee">
+    <div class='flex justify-between items-start'>
+      <h2 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>
+        Featured Projects
+      </h2>
+      <div class='hidden md:block'>
+        <Button href=`${baseUrl}/project/`>Go to projects &rarr;</Button>
+      </div>
+      <div class='block md:hidden'>
+        <Button href=`${baseUrl}/project/`>to projects</Button>
+      </div>
+    </div>
+    <ProjectList posts={posts} />
+  </Card>
+</section>

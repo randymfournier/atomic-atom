@@ -1,0 +1,18 @@
+---
+interface Props {
+  content: any;
+}
+
+const { content } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<article class='prose-slate w-sm md:w-prose md:prose poppins'>
+  <a href={`${baseUrl}/project/`} title='Back to projects'>&larr; Back to projects</a>
+  <p class='text-slate text-sm md:text-base'>
+    Published on {content.pubDate} by {content.author}
+  </p>
+  <slot />
+  <p class='text-slate'>Written by {content.author}</p>
+  <a href={`${baseUrl}/project/`} title='Back to projects'>&larr; Back to projects</a>
+</article>

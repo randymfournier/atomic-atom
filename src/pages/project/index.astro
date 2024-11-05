@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Default.astro';
+import ProjectList from '@components/project/ProjectList.astro';
+
+const posts = await getCollection('project').then((collection: any) =>
+  collection.reverse()
+);
+---
+
+<Layout
+  title='Projects'
+  description='Brutal Blog | On this page you can find a collection of blogposts'
+  pageTitle='Brutal Blog'
+>
+  <main class='bg-purple p-6'>
+    <ProjectList posts={posts} />
+  </main>
+</Layout>

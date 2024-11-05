@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '@layouts/Default.astro';
+import ProjectList from '@components/project/ProjectList.astro';
+import { Button } from '@eliancodes/brutal-ui';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('project').then((collection: any) =>
+    collection.reverse()
+  );
+
+  const tags: string[] = [];
+
+  allPosts.forEach((post: any) => {
+    post.data.tags.forEach((tag: any) => {
+      tags.push(tag.toLowerCase());
+    });
+  });
+
+  return Array.from(new Set(tags)).map((tag) => {
+    return {
+      params: { tag },
+      props: {
+        tag,
+        projectposts: allPosts.filter((post: any) =>
+          post.data.tags.map((tag: any) => tag.toLowerCase()).includes(tag)
+        ),
+      },
+    };
+  });
+}
+
+interface Props {
+  tag: string;
+  projectposts: CollectionEntry<'project'>[];
+}
+
+const { tag, projectposts } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title={`Projects: ${tag}`}
+  description={`Brutal Blog | All posts tagged with ${tag}`}
+  pageTitle={`Brutal Blog | Blogposts tagged with ${tag}`}
+>
+  <main class='p-6 bg-purple grid gap-4'>
+    <div>
+      <Button href={`${baseUrl}/project/`}>&larr; Back to projects</Button>
+    </div>
+    <ProjectList posts={projectposts} />
+  </main>
+</Layout>

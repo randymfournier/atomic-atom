@@ -1,0 +1,27 @@
+---
+import Layout from './Default.astro';
+import ProjectSideBar from '@components/project/ProjectSideBar.astro';
+import ProjectContent from '@components/project/ProjectContent.astro';
+import RecentProjectPosts from '@components/generic/RecentProjectPosts.astro';
+
+const ogImage = new URL(`/v1/generate/og/${Astro.params.slug}.png`, Astro.url);
+
+const { content, headings } = Astro.props;
+const { title, description } = content;
+---
+
+<Layout
+  title={title as string}
+  description={description as string}
+  ogImage={ogImage}
+>
+  <main class='p-6 lg:grid lg:grid-cols-3 flex justify-center'>
+    <ProjectSideBar headings={headings} />
+    <ProjectContent content={content}>
+      <slot />
+    </ProjectContent>
+  </main>
+  <section class='p-6'>
+    <RecentProjectPosts count={3} />
+  </section>
+</Layout>
