@@ -3,7 +3,8 @@ import { join } from "node:path";
 import { AstroFont } from "astro-font";
 
 const appDir = process.cwd();
-const getFontPath = (name: string) => join(appDir, "public", "fonts", name);
+const baseUrl = import.meta.env.BASE_URL;
+const getFontPath = (name: string) => join(appDir, "public", `${baseUrl}/fonts`, name);
 ---
 
 <AstroFont

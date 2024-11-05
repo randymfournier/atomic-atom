@@ -1,4 +1,5 @@
 ---
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section class='flex flex-col gap-8 justify-between'>
@@ -8,7 +9,7 @@
     Sorry, we couldn't find the page you were looking for.
   </p>
   <a
-    href='/'
+    href={`${baseUrl}`}
     title='Go back home'
     class='px-4 py-2 border-2 border-black hover:bg-red transition-colors duration-150 ease-in-out w-48 text-center poppins'
     >&larr; Go Home</a

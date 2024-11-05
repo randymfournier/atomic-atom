@@ -1,68 +1,98 @@
 ---
 import Layout from '@layouts/Default.astro';
 import RecentBlogPosts from '@components/generic/RecentBlogPosts.astro';
+import FeaturedProjectPosts from '@components/generic/FeaturedProjectPosts.astro';
 import MobileSocials from '@components/home/MobileSocials.astro';
 import { Pill } from '@eliancodes/brutal-ui';
 import { Button } from '@eliancodes/brutal-ui';
 import { Card } from '@eliancodes/brutal-ui';
 
-const builtWith = [
+const technologies = [
   { name: 'Astro', url: 'https://astro.build/' },
-  { name: 'UnoCSS', url: 'https://uno.antfu.me/' },
-  {
-    name: 'Content Collections',
-    url: 'https://docs.astro.build/en/guides/content-collections/',
-  },
-  { name: 'RSS', url: 'https://docs.astro.build/en/guides/rss/' },
-  {
-    name: 'Sitemap',
-    url: 'https://docs.astro.build/en/guides/integrations-guide/sitemap/',
-  },
-  { name: 'Vercel', url: 'https://vercel.com' },
-  { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+  { name: 'AWS', url: 'https://aws.amazon.com/' },
+  { name: 'Azure', url: 'https://azure.microsoft.com/en-ca' },
+  { name: 'GCP ', url: 'https://cloud.google.com/' },
+  { name: 'OpenShift', url: 'https://www.redhat.com/en/technologies/cloud-computing/openshift' },
+  { name: 'VEEAM', url: 'https://www.veeam.com/' },
+  { name: 'Python', url: 'https://www.python.org/' },
+  { name: 'Docker', url: 'https://www.docker.com/' },
+  { name: 'Terraform', url: 'https://www.terraform.io/' },
+  { name: 'Akeneo', url: 'https://www.akeneo.com/' },
+  { name: 'Deskpro', url: 'https://www.deskpro.com/' },
+  { name: 'Laravel', url: 'https://laravel.com/' },
+  { name: 'PHP', url: 'https://www.php.net/' },
+  { name: 'Powershell', url: 'https://learn.microsoft.com/en-us/powershell/' },
+  { name: 'SymmetricDS', url: 'https://symmetricds.org/' },
+  { name: 'Aristocrat', url: 'https://www.aristocrat.com/' },
+  { name: 'Bluberi', url: 'https://bluberi.com/' },
+  { name: 'IGT', url: 'https://www.igt.com/' },
+  { name: 'LnW', url: 'https://www.lnw.com/' }
 ];
 ---
 
 <Layout
   title='Home'
-  pageTitle='Brutal Theme | Home'
-  description='Brutal is a minimalistic, neobrutalism theme for Astro.'
+  pageTitle='Randy Fournier | Home'
+  description='A portfolio website'
 >
-  <main class='bg-pink p-6'>
+  <main class='bg-#D2B48C p-6'>
     <MobileSocials />
     <section id='about' class='grid md:grid-cols-8 gap-8 mt-4'>
-      <h2 class='hidden'>About Brutal</h2>
-      <div class='col-span-4'>
-        <Card>
-          <div class='flex flex-col justify-between items-start gap-4'>
+
+      <div class='col-span-8'>
+        <Card color='#818cf8'>
+          <div class='flex flex-col justify-between items-start items-center gap-4'>
             <p class='mt-4 outfit text-2xl md:text-5xl lg:text-7xl'>
-              Brutal theme for <a
-                class='text-white'
-                target='_blank'
-                href='https://astro.build/'>Astro</a
-              >
+              Hello <span
+                class='text-#f0f8ff'>Friend</span>
             </p>
             <p class='mt-2 outfit text-xl md:text-3xl lg:text-5xl'>
-              A minimalistic, neobrutalism theme for Astro.
+              Welcome to my website.
             </p>
-            <Button target={'_self'} href='/blog/'>
-              Check out the blog &rarr;
-            </Button>
+            <p class='mt-2 outfit text-xl md:text-3xl lg:text-5xl'>
+              Take a look around, stay a while
+            </p>
           </div>
         </Card>
       </div>
-      <div class='col-span-2'>
-        <Card>
+
+      <div class='col-span-4'>
+        <Card color='#a3e635'>
+          <h2 class='text-2xl md:text-4xl lg:text-6xl mb-4 dm-serif'>
+            About Me
+          </h2>
+          <p class='poppins'>
+            Hi There, I'm a Cloud Engineer from Canada! I like to solve problems and I'm always up for a challenge. I used to work
+            at a corporate position in the IT field as a Software/Infrastructure Administrator for a Large Enterprise Business.
+            <br /><br />
+            Prior to that I used to repair various electronics such as arcade machines, game consoles, computers and cellphones.
+            More recently I've been working in the gaming industry repairing slot machines as a slot technician. Now I continue to
+            work in the field travelling to different sites in Ontario.
+            <br /><br />
+            On my off time I like to freelance and help with technical projects such as website development and maintenance, 
+            web app development, automation projects and so much more!
+            <br /><br />
+            I'm always open to consult and see where I might be able to fit in to make your workflow more efficient.
+
+            <Button class="rf-btn" target={'_blank'} href="https://www.linkedin.com/in/randymfournier/">
+              Get In Touch &rarr;
+            </Button>
+          </p>
+        </Card>
+      </div>
+
+      <div class='col-span-4'>
+        <Card color='#f472b6'>
           <h2 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>
-            Brutal is built with
+            Technologies I'm familiar with
           </h2>
           <ul class='flex gap-4 flex-wrap'>
             {
-              builtWith.map((item) => (
+              technologies.map((item) => (
                 <li>
                   <Pill>
                     <a
-                      class='sanchez'
+                      class='sanchez rf-pill'
                       href={item.url}
                       target='_blank'
                       title={`Go to ${item.name}`}
@@ -76,20 +106,29 @@ const builtWith = [
           </ul>
         </Card>
       </div>
-      <div class='col-span-2'>
-        <Card>
-          <h2 class='text-2xl md:text-4xl lg:text-6xl mb-4 dm-serif'>
-            What is Brutal?
-          </h2>
-          <p class='poppins'>
-            Brutal is a theme built with Astro, UnoCSS by <a
-              href='https://www.elian.codes/'>Elian</a
-            >. It's a simple, fast, and modern theme that is easy to use and
-            customize. Mainly meant to power blogs and personal websites.
-          </p>
-        </Card>
-      </div>
     </section>
+    <FeaturedProjectPosts />
     <RecentBlogPosts />
   </main>
+
+  <style>
+    a.rf-btn {
+    filter: drop-shadow(5px 5px 0 rgb(0 0 0 / 1));
+    background-color: white;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    transition: all;
+    transition-duration: 0.5s;
+    animation: ease-in-out;
+    font-family: 'Sanchez', serif;
+  }
+  a.rf-btn:hover {
+    filter: drop-shadow(3px 3px 0 rgb(0 0 0 / 1));
+    background-color: var(--color);
+  }
+    .rf-pill {
+    font-size: large;
+  }
+  </style>
 </Layout>

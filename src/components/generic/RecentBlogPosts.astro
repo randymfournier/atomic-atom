@@ -9,23 +9,24 @@ interface Props {
 }
 
 const { count } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
 
-const posts = await getCollection('blog').then((posts) =>
+const posts = await getCollection('blog').then((posts: any) =>
   posts.reverse().slice(0, count ?? 3)
 );
 ---
 
 <section class='mt-8'>
-  <Card>
+  <Card color="#4ade80">
     <div class='flex justify-between items-start'>
       <h2 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>
         Recent Blogposts
       </h2>
       <div class='hidden md:block'>
-        <Button href='/blog/'>Go to blog &rarr;</Button>
+        <Button href={`${baseUrl}/blog/`}>Go to blog &rarr;</Button>
       </div>
       <div class='block md:hidden'>
-        <Button href='/blog/'>to blog</Button>
+        <Button href={`${baseUrl}/blog/`}>to blog</Button>
       </div>
     </div>
     <BlogList posts={posts} />

@@ -10,11 +10,13 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+
 if (Astro.props.ogImage === undefined) {
   Astro.props.ogImage = new URL('/v1/generate/og/default.png', Astro.url);
 }
 
 const { title, description, ogImage } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <head>
@@ -23,13 +25,13 @@ const { title, description, ogImage } = Astro.props;
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <meta name='generator' content={Astro.generator} />
 
-  <link
+  <!-- <link
     rel='alternate'
     href='https://brutal.elian.codes/blog.xml'
     type='application/rss+xml'
-  />
+  /> -->
 
-  <meta name='title' content={`Brutal Theme | ${title}`} />
+  <meta name='title' content={`Randy Fournier | ${title}`} />
   <meta name='description' content={description} />
 
   <meta property='og:type' content='website' />
@@ -45,9 +47,9 @@ const { title, description, ogImage } = Astro.props;
   <meta property='twitter:image' content={ogImage} />
 
   <link rel='canonical' href={canonicalURL} />
-  <link rel='icon' type='image/svg' href='/favicon.svg' />
+  <link rel='icon' type='image/svg' href={`${baseUrl}/favicon.svg `}/>
 
-  <title>Brutal Theme | {title}</title>
+  <title>Randy Fournier | {title}</title>
 
   <ViewTransitions />
 
